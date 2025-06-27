@@ -1,0 +1,1034 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Tamagotchi</title>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <style>
+      body {
+        background-image: url("../img/fondo/fondopixel.gif");
+        background-repeat: repeat; /* Se repite en X e Y */
+        background-size: 100px 100px; /* Tamaño de cada "tile" del gif */
+        color: #000000;
+        text-align: center;
+        padding-top: 50px;
+      }
+        
+        .minecraft-font {
+            font-family: 'Press Start 2P', monospace;
+            font-size: 24px;
+        }
+        
+        .minecraft-font-text {
+            font-family: 'Press Start 2P', monospace;
+            font-size: 18px;
+        }
+        
+        .minecraft-font-small {
+            font-family: 'Press Start 2P', monospace;
+            font-size: 14px;
+        }
+        
+        /* Pantalla de selección */
+        .screen {
+            display: none;
+        }
+        
+        .screen.active {
+            display: block;
+        }
+        
+        /* Estilos para pantalla de selección */
+        .containeringreso {
+            background-color: rgba(0, 0, 0, 0.5);
+            height: 120px;
+            width: 40%;
+            margin: 20px auto;
+            padding: 20px;
+            border-radius: 10px;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+        
+        .containeringreso:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+            transform: scale(1.02);
+        }
+        
+        .NombreTamagotchi {
+            background-color: rgba(0, 0, 0, 0.5);
+            height: 40px;
+            width: 30%;
+            margin: 20px auto;
+            padding: 20px;
+            border-radius: 10px;
+            color: white;
+            border: none;
+            font-family: 'Press Start 2P', monospace;
+            font-size: 16px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        .NombreTamagotchi:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+            transform: scale(1.02);
+        }
+        
+        .NombreTamagotchi:focus {
+            outline: 2px solid #4ecdc4;
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+        
+        .container {
+            background-color: rgba(0, 0, 0, 0.5);
+            height: 100px;
+            width: 30%;
+            margin: 20px auto;
+            padding: 20px;
+            border-radius: 10px;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+        
+        .container:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+            transform: scale(1.02);
+        }
+        
+        .containercuerpo {
+            background-color: rgba(0, 0, 0, 0.5);
+            height: auto;
+            width: 60%;
+            margin: 20px auto;
+            padding: 20px;
+            border-radius: 10px;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+        }
+        
+        .containercuerpo ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .containercuerpo li {
+            background-color: rgba(0, 0, 0, 0.5);
+            height: 120px;
+            width: 150px;
+            margin: 10px;
+            padding: 20px;
+            border-radius: 10px;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 3px solid transparent;
+        }
+        
+        .containercuerpo li:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+            transform: scale(1.05);
+        }
+        
+        .containercuerpo li.selected {
+            border-color: #4ecdc4;
+            background-color: rgba(78, 205, 196, 0.3);
+        }
+        
+        .containercuerpo img {
+            width: 80px;
+            height: 80px;
+            image-rendering: pixelated;
+        }
+        
+        .boton {
+            background-color: rgb(51, 123, 255);
+            height: 60px;
+            width: 20%;
+            margin: 30px auto;
+            padding: 20px;
+            border-radius: 10px;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            border: none;
+            transition: all 0.3s ease;
+        }
+        
+        .boton:hover {
+            background-color: rgba(51, 68, 255, 0.888);
+            transform: scale(1.02);
+        }
+        
+        /* Estilos para pantalla de juego */
+        .containerInfor {
+            background-color: rgba(0, 0, 0, 0.5);
+            height: 80px;
+            width: 60%;
+            margin: 20px auto;
+            padding: 20px;
+            border-radius: 10px;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+        }
+        
+        .containerInfor ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            align-items: center;
+        }
+        
+        .containerInfor li {
+            background-color: rgba(0, 0, 0, 0);
+            height: 40px;
+            width: 120px;
+            margin: 5px;
+            padding: 10px;
+            border-radius: 10px;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .containerNombre {
+            background-color: rgba(112, 112, 112, 0.5);
+            height: 40px;
+            width: 25%;
+            margin: 20px auto;
+            padding: 20px;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 10px;
+        }
+        
+        .container-juego {
+            background-color: rgb(255, 255, 255);
+            height: 400px;
+            width: 40%;
+            margin: 20px auto;
+            padding: 20px;
+            border-radius: 10px;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 4;
+        }
+        .container-juego .tamagotchi-particulas{
+            z-index: 1;  
+        }
+        .container-juego .tamagotchi-reaccion {
+            z-index: 2;  
+        }
+        .container-juego .tamagotchi-imagen {
+            z-index: 3;
+        }
+        .containerinteracciones {
+            background-color: rgba(0, 0, 0, 0.5);
+            height: auto;
+            width: 60%;
+            margin: 20px auto;
+            padding: 20px;
+            border-radius: 10px;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .containerinteracciones ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .containerinteracciones li {
+            background-color: rgba(0, 0, 0, 0);
+            height: 80px;
+            width: 80px;
+            margin: 5px;
+            padding: 15px;
+            border-radius: 10px;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .conainerinteracciones li .imagenboton{
+            height: 60px;
+            width: 60px;
+        }
+        
+        .containerinteracciones li:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+            transform: scale(1.1);
+        }
+        
+        .containerinteraccionescuestionables {
+            background-color: rgba(0, 0, 0, 0.5);
+            height: auto;
+            width: 50%;
+            margin: 20px auto;
+            padding: 20px;
+            border-radius: 10px;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+        }
+        
+        .containerinteraccionescuestionables ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .containerinteraccionescuestionables li {
+            background-color: rgba(255, 149, 0, 0.699);
+            height: 40px;
+            width: 200px;
+            margin: 10px;
+            padding: 20px;
+            border-radius: 10px;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .containerinteraccionescuestionables li:hover {
+            background-color: rgba(255, 149, 0, 0.9);
+            transform: scale(1.05);
+        }
+        
+        .imagenboton {
+            width: 40px;
+            height: 40px;
+            image-rendering: pixelated;
+        }
+        
+        .tamagotchi-imagen {
+            width: 200px;
+            height: 200px;
+            image-rendering: pixelated;
+        }
+        
+        .barra-vida {
+            width: 100px;
+            height: 20px;
+            background-color: #333;
+            border-radius: 10px;
+            overflow: hidden;
+            margin: 5px;
+        }
+        
+        .barra-fill {
+            height: 100%;
+            background-color: #4CAF50;
+            transition: width 0.5s ease;
+        }
+        
+        .barra-energia .barra-fill {
+            background-color: #2196F3;
+        }
+        
+        .barra-hambre .barra-fill {
+            background-color: #FF9800;
+        }
+    </style>
+</head>
+<body>
+    <!-- Pantalla de Selección -->
+    <div id="pantallaSeleccion" class="screen active">
+        <div class="containeringreso">
+            <h3 class="minecraft-font">Ingrese el nombre de su Tamagotchi</h3>
+        </div>
+        <input type="text" class="NombreTamagotchi" id="NombreTamagotchi" placeholder="Nombre aquí...">
+        <div class="container">
+            <h1 class="minecraft-font">Escoja su tamagotchi</h1>
+        </div>
+        <div class="containercuerpo" id="escojercuerpo">
+            <ul class="root">
+                <li data-tipo="papel" onclick="seleccionarCuerpo(this)">
+                  <img src="/img/cuerpos/Cuerpopapel.gif">
+                  <p class="minecraft-font-small" style="margin-top: 10px;">Papel</p>
+                </li>
+            </ul>
+            <ul class="root">
+                <li data-tipo="plastilina" onclick="seleccionarCuerpo(this)">
+                    <img src="/img/cuerpos/Cuerpoplastilina.gif">
+                    <p class="minecraft-font-small" style="margin-top: 10px;">Plastilina</p>
+                </li>
+            </ul>
+            <ul class="root">
+                <li data-tipo="tocino" onclick="seleccionarCuerpo(this)">
+                  <img src="/img/cuerpos/Cuerpotocino.gif">
+                    <p class="minecraft-font-small" style="margin-top: 10px;">Tocino</p>
+                </li>
+            </ul>
+        </div>
+        <button class="boton" onclick="guardarinfor()">
+            <h3 class="minecraft-font">Continuar</h3>
+        </button>
+    </div>
+
+    <!-- Pantalla de Juego -->
+    <div id="pantallaJuego" class="screen">
+        <div class="containerInfor">
+            <ul class="root">
+                <li>
+                    <div class="barra-vida">
+                        <div class="barra-fill" id="barraVida" style="width: 3;"></div>
+                    </div>
+                    <p class="minecraft-font-small">Vida</p>
+                </li>
+            </ul>
+            <ul class="root">
+                <li>
+                    <div class="barra-vida barra-energia">
+                        <div class="barra-fill" id="barraEnergia" style="width: 3;"></div>
+                    </div>
+                    <p class="minecraft-font-small">Energía</p>
+                </li>
+            </ul>
+            <ul class="root">
+                <li>
+                    <div class="barra-vida barra-hambre">
+                        <div class="barra-fill" id="barraHambre" style="width: 3;"></div>
+                    </div>
+                    <p class="minecraft-font-small">Hambre</p>
+                </li>
+            </ul>
+        </div>
+        <div class="containerNombre" >
+            <h2 id="nombreTamagotchi" class="minecraft-font">Mi Tamagotchi</h2>
+        </div>
+        <div class="container-juego">
+            <div id="particulasTamagotchi" class="tamagotchi-particulas"></div>
+            <div id="reaccionTamagotchi" class="tamagotchi-reaccion"></div>
+            <div id="imagenTamagotchi" class="tamagotchi-imagen">tamagotchi-imagen</div>
+        </div>
+        <div class="containerinteracciones">
+            <ul class="root">
+                <li onclick="alimentar()">
+                    
+                    <p class="minecraft-font-small" style="margin-top: 5px;"> <img class="imagenboton" src="/img/botones/Botoncomer.png">Comer</p>
+                </li>
+            </ul>
+            <ul class="root">
+                <li onclick="banhar()">
+                    <p class="minecraft-font-small" style="margin-top: 5px;"> <img class="imagenboton"src="/img/botones/Botonbañar.png">Bañar</p>
+                </li>
+            </ul>
+            <ul class="root">
+                <li onclick="jugar()">
+                    
+                    <p class="minecraft-font-small" style="margin-top: 2px;"> <img class="imagenboton" src="/img/botones/Botonjugar.png"> Jugar</p>
+                </li>
+            </ul>
+            <ul class="root">
+                <li onclick="dormir()">
+                    <p class="minecraft-font-small" style="margin-top: 5px;"> <img class="imagenboton" src="/img/botones/Botondormir.png">Dormir</p>
+                </li>
+            </ul>
+        </div>
+        <div class="containerinteraccionescuestionables">
+            <ul class="root">
+                <li onclick="preguntarEstado()">
+                    <label class="minecraft-font-text">¿Cómo estás?</label>
+                </li>
+                <li>
+                  <label class="minecraft-font-text">Invernar</label>
+                </li>
+            </ul>
+            <ul class="root">
+                <li onclick="darConsejo()">
+                    <label class="minecraft-font-text">Consejo</label>
+                </li>
+                <li>
+                  <label class="minecraft-font-text">Despertar</label>
+                </li>
+            </ul>
+        </div>
+        <button class="boton" onclick="volverSeleccion()" style="width: 15%; background-color: #95a5a6;">
+            <h3 class="minecraft-font-small">Volver</h3>
+        </button>
+    </div>
+        <script>
+      let tamagotchi = {
+            nombre: '',
+            tipo: '',
+            vida: 3,
+            energia: 3,
+            hambre: 3,
+        };
+        let tipoSeleccionado = null;
+        
+        // Función para seleccionar el cuerpo del Tamagotchi
+        function seleccionarCuerpo(elemento) {
+            // Remover selección anterior
+            document.querySelectorAll('.containercuerpo li').forEach(li => {
+                li.classList.remove('selected');
+            });
+            
+            // Agregar selección actual
+            elemento.classList.add('selected');
+            tipoSeleccionado = elemento.getAttribute('data-tipo');
+        }
+        function guardarinfor() {
+            const nombre = document.getElementById('NombreTamagotchi').value.trim();
+            
+            if (!nombre) {
+                alert('¡Por favor ingresa un nombre para tu Tamagotchi!');
+                return;
+            }
+            
+            if (!tipoSeleccionado) {
+                alert('¡Por favor selecciona un tipo de Tamagotchi!');
+                return;
+            }
+            
+            tamagotchi.nombre = nombre;
+            tamagotchi.tipo = tipoSeleccionado;
+            
+            // Cambiar a pantalla de juego
+            document.getElementById('pantallaSeleccion').classList.remove('active');
+            document.getElementById('pantallaJuego').classList.add('active');
+            
+            // Actualizar información en pantalla de juego
+            document.getElementById('nombreTamagotchi').textContent = tamagotchi.nombre;
+            actualizarTamagotchi();
+            
+            // Iniciar sistema de degradación
+            iniciarSistema();
+        }
+        // Función para volver a la pantalla de selección
+        function volverSeleccion() {
+            if (confirm('¿Estás seguro de que quieres volver? Se perderá el progreso actual.')) {
+                document.getElementById('pantallaJuego').classList.remove('active');
+                document.getElementById('pantallaSeleccion').classList.add('active');
+                
+                // Resetear datos
+                document.getElementById('NombreTamagotchi').value = '';
+                document.querySelectorAll('.containercuerpo li').forEach(li => {
+                    li.classList.remove('selected');
+                });
+                tipoSeleccionado = null;
+                
+                // Resetear tamagotchi
+                tamagotchi = {
+                    nombre: '',
+                    tipo: '',
+                    vida: 3,
+                    energia: 3,
+                    hambre: 3,
+                    estado: 'feliz'
+                };
+            }
+        }
+        function actualizarTamagotchi() {
+            const tamagotchiElement = document.getElementById('imagenTamagotchi');
+            
+            // Cambiar colores según el tipo
+            switch(tamagotchi.tipo) {
+                case 'papel':
+                    imagenSrc = '../img/cuerpos/Cuerpopapel.gif';
+                  break;
+                case 'plastilina':
+                    imagenSrc = '../img/cuerpos/Cuerpoplastilina.gif';
+                    break;
+                case 'tocino':
+                    imagenSrc = '../img/cuerpos/Cuerpotocino.gif';
+                    break;
+
+                default:
+            }
+            tamagotchiElement.innerHTML = `<img src="${imagenSrc}" alt="Tamagotchi" class="tamagotchi-imagen">`;
+        }
+        class Tamagotchi{
+    nombre='';
+    tipo='';
+    constructor(){
+        this.energia=3;
+        this.vida=3;
+        this.hambre=3;
+        this.Estado=new Feliz();
+        this.Estadohigienico=new Limpio();
+        this.actualizarInterfaz();
+    }
+    
+    setEstado (estado){
+        this.Estado=estado;
+        this.actualizarInterfaz();
+    }
+    cambiar(){
+        this.Estado.cambiar(this);
+    }
+    setEstadohigienco (estadohigienco){
+        this.Estadohigienico=estadohigienco;
+        this.actualizarInterfaz();
+    }
+    cambiarhigiene(){
+        this.Estadohigienico.cambiar(this);
+    }
+    
+    // Método para actualizar la interfaz visual
+    actualizarInterfaz(){
+        this.actualizarReaccion();
+        this.actualizarParticulas();
+    }
+    
+    actualizarReaccion(){
+        const reaccionElement = document.getElementById('reaccionTamagotchi');
+        if(reaccionElement){
+            const estadoNombre = this.Estado.constructor.name;
+            let gifPath = '';
+            
+            switch(estadoNombre){
+                case 'Feliz':
+                    gifPath = 'img/reaccion/Carafeliz.gif';
+                    break;
+                case 'Triste':
+                    gifPath = 'img/reaccion/Caratriste.gif';
+                    break;
+                case 'Dormido':
+                    gifPath = 'img/reaccion/Caradormida.gif';
+                    break;
+                case 'Cansado':
+                    gifPath = 'img/reaccion/Caracansada.gif';
+                    break;
+                case 'Muerto':
+                    gifPath = 'img/reaccion/Caramuerto.gif';
+                    break;
+                case 'Invernando':
+                    gifPath = 'img/reaccion/Caradormida.gif';
+                    break;
+                default:
+                    gifPath = 'img/reaccion/Carafeliz.gif'; // GIF por defecto
+                    console.warn(`Estado no reconocido: ${estadoNombre}`);
+                    break;
+            }
+            
+            reaccionElement.innerHTML = `<img src="${gifPath}" alt="Reacción ${estadoNombre}">`;
+        }
+    }
+    
+    actualizarParticulas(){
+        const particulasElement = document.getElementById('particulasTamagotchi');
+        if(particulasElement){
+            const estadoHigienicoNombre = this.Estadohigienico.constructor.name;
+            let gifPath = '';
+            
+            switch(estadoHigienicoNombre){
+                case 'Limpio':
+                    gifPath = 'img/particulas/Particulaslimpieza.gif';
+                    break;
+                case 'Sucio':
+                    gifPath = 'img/particulas/Particulassuciedad.gif';
+                    break;
+                default:
+                    gifPath = ''; // Sin partículas para estados no reconocidos
+                    break;
+            }
+            
+            if(gifPath){
+                particulasElement.innerHTML = `<img src="${gifPath}" alt="Partículas ${estadoHigienicoNombre}">`;
+            } else {
+                particulasElement.innerHTML = '';
+            }
+        }
+    }
+    
+    // Métodos de acción que ahora actualizan la interfaz
+    alimentar(){
+        this.Estado.alimentar(this);
+        this.actualizarInterfaz();
+    }
+    
+    jugar(){
+        this.Estado.jugar(this);
+        this.actualizarInterfaz();
+    }
+    
+    dormir(){
+        this.Estado.dormir(this);
+        this.actualizarInterfaz();
+    }
+    
+    despertar(){
+        this.Estado.despertar(this);
+        this.actualizarInterfaz();
+    }
+    
+    bañar(){
+        this.Estadohigienico.bañar(this);
+        this.actualizarInterfaz();
+    }
+    
+    comoestas(){
+        this.Estado.comoestas(this);
+        this.Estadohigienico.comoestas(this);
+    }
+    
+    consejo(){
+        this.Estado.consejo(this);
+    }
+    
+    invernar(){
+        this.Estado.invernar(this);
+        this.actualizarInterfaz();
+    }
+}
+
+//Clase patron state para limpio o sucio
+class Estadohigienico {
+    bañar(tamagotchi){
+        console.log("");
+    }
+}
+
+class Limpio extends Estadohigienico{
+    bañar(tamagotchi){
+        console.log("Que lindo estar limpio :3");
+    }
+    comoestas(tamagotchi){
+        console.log("MUY LIMPIO >W<");
+    }
+}
+
+class Sucio extends Estadohigienico{
+    bañar(tamagotchi){
+        tamagotchi.setEstadohigienco(new Limpio());
+        console.log("¡Ahora estoy limpio!");
+    }
+    comoestas(tamagotchi){
+        console.log("Creo que necesito un baño :/");
+    }
+}
+
+//clase patron state de estado
+class Estado {
+    alimentar(tamagotchi){
+        console.log("");
+    }
+    jugar(tamagotchi){
+        console.log("");
+    }
+    dormir(tamagotchi){
+        console.log("");
+    }
+    comoestas(tamagotchi){
+        console.log("");
+    }
+    consejo(tamagotchi){
+        console.log("");
+    }
+    despertar(tamagotchi){
+        console.log("");
+    }
+    invernar(tamagotchi){
+        console.log("");
+    }
+}
+
+class Feliz extends Estado{
+    alimentar(tamagotchi){
+        if(tamagotchi.hambre==3){
+            console.log("Estoy lleno :D!");
+        }else if(tamagotchi.hambre<3){
+            tamagotchi.hambre+=1;
+            console.log("Ñam ñam!");
+        }
+    }
+    jugar(tamagotchi){
+        if(tamagotchi.energia>0){
+            tamagotchi.energia-=1;
+            console.log("Que divertido");
+        } else if(tamagotchi.energia==0){
+            console.log("No quiero jugar estoy cansado :c");
+            tamagotchi.setEstado(new Cansado());
+        }
+    }
+    dormir(tamagotchi){
+        if(tamagotchi.energia==0){
+            console.log("Voy a mimir uwu");
+            tamagotchi.setEstado(new Dormido());
+        } else if (tamagotchi.energia>0){
+            console.log("No quiero dormir ahora >:)");
+        }
+    }
+    comoestas(tamagotchi){
+        console.log("Estoy feliz :D, con");
+        if(tamagotchi.energia>0){
+            console.log(" el 100% de energia");
+        } else if (tamagotchi.energia==0){
+            console.log(" cansancio, debo dormir");
+        }
+        if (tamagotchi.hambre>0){
+            console.log(" sin hambre");
+        } else if (tamagotchi.hambre==0){
+            console.log(" con hambre :c");
+        }
+    }
+    consejo(tamagotchi){
+        console.log("Cuando estes dentro de el agua, recuerda no puedes respirar");
+    }
+    despertar(tamagotchi){
+        if(tamagotchi.energia>0){
+            console.log("Estoy muy despierto :D");
+        } else if (tamagotchi.energia==0){
+            console.log("Creo que deberia dormir");
+        }
+    }
+    invernar(tamagotchi){
+        console.log("No quiero invernar");
+    }
+}
+
+class Triste extends Estado{
+    alimentar(tamagotchi){
+        if(tamagotchi.hambre==3){
+            console.log("Estoy lleno :c");
+        }else if(tamagotchi.hambre<3){
+            tamagotchi.hambre+=1;
+            console.log(" Ñan ñam... :c ");
+        }
+    }
+    jugar(tamagotchi){
+        if(tamagotchi.energia>0){
+            tamagotchi.energia-=1;
+            console.log("Gracias me alegraste el dia!");
+            tamagotchi.setEstado(new Feliz());
+        } else if(tamagotchi.energia==0){
+            console.log("No quiero jugar estoy cansado y triste :c");
+            tamagotchi.setEstado(new Cansado());
+        }
+    }
+    dormir(tamagotchi){
+        if(tamagotchi.energia==0){
+            console.log("Voy a mimir uwu");
+            tamagotchi.setEstado(new Dormido());
+        } else if (tamagotchi.energia>0){
+            console.log("Creo que dormir, me hara sentir mejor");
+            tamagotchi.setEstado(new Dormido());
+        }
+    }
+    comoestas(tamagotchi){
+        console.log("Estoy triste :c, con");
+        if(tamagotchi.energia>0){
+            console.log(" el 100% de energia");
+        } else if (tamagotchi.energia==0){
+            console.log(" cansancio, debo dormir");
+        }
+        if (tamagotchi.hambre>0){
+            console.log(" y sin hambre");
+        } else if (tamagotchi.hambre==0){
+            console.log(" y con hambre :c");
+        }
+    }
+    consejo(tamagotchi){
+        console.log("Estoy triste, creo que los necesito yo :C");
+    }
+    despertar(tamagotchi){
+        if(tamagotchi.energia>0){
+            console.log("Creo que deberia dormir");
+        } else if (tamagotchi.energia==0){
+            console.log("Creo que deberia dormir");
+        }
+    }
+    invernar(tamagotchi){
+        console.log("No quiero invernar");
+    }
+}
+
+class Dormido extends Estado{
+    alimentar(tamagotchi){
+        console.log("( Shhh esta dormido...)");
+    }
+    jugar(tamagotchi){
+        console.log("( Shhh esta dormido...)");    
+    }
+    dormir(tamagotchi){
+        console.log("( Esta dormido )");
+    }
+    comoestas(tamagotchi){
+        console.log("Z z z...");
+    }
+    consejo(tamagotchi){
+        console.log("Ovejita uno, ovenjita dss... z z z..");
+    }
+    despertar(tamagotchi){
+        if(tamagotchi.energia==0){
+            tamagotchi.energia+=3;
+            console.log("Despierto y listo para jugar :D!");
+            tamagotchi.setEstado(new Feliz());
+        }
+    }
+    invernar(tamagotchi){
+        console.log("No quiero invernar");
+    }
+}
+
+class Cansado extends Estado{
+    alimentar(tamagotchi){
+        if(tamagotchi.hambre==3){
+            console.log("Estoy lleno :c");
+        }else if(tamagotchi.hambre<3){
+            tamagotchi.hambre+=1;
+            console.log(" Ñan ñam... :c ");
+        }
+    }
+    jugar(tamagotchi){
+        if(tamagotchi.energia>0){
+            tamagotchi.energia-=1;
+            console.log("Gracias me alegraste el dia!");
+            tamagotchi.setEstado(new Feliz());
+        } else if(tamagotchi.energia==0){
+            console.log("No quiero jugar estoy cansado :c");
+        }
+    }
+    dormir(tamagotchi){
+        if(tamagotchi.energia==0){
+            console.log("Voy a mimir uwu");
+            tamagotchi.setEstado(new Dormido());
+        } else if (tamagotchi.energia>0){
+            console.log("Creo que dormir, me hara sentir mejor");
+            tamagotchi.setEstado(new Dormido());
+        }
+    }
+    comoestas(tamagotchi){
+        console.log("Estoy cansado :c, con");
+        if(tamagotchi.energia>0){
+            console.log(" el 100% de energia");
+        } else if (tamagotchi.energia==0){
+            console.log(" cansancio, debo dormir o si quieres puedo invernar u.u");
+        }
+        if (tamagotchi.hambre>0){
+            console.log(" y sin hambre");
+        } else if (tamagotchi.hambre==0){
+            console.log(" y con hambre :c");
+        }
+    }
+    consejo(tamagotchi){
+        console.log("Estoy cansado, creo que los necesito yo :C");
+    }
+    despertar(tamagotchi){
+        if(tamagotchi.energia>0){
+            console.log("Creo que deberia dormir");
+        } else if (tamagotchi.energia==0){
+            console.log("Creo que deberia dormir");
+        }
+    }
+    invernar(tamagotchi){
+        if(tamagotchi.energia>0){
+            console.log("Necesito estar más cansado para invernar");
+        } else if(tamagotchi.energia==0){
+            console.log("Me ire a invernar uwu");
+            tamagotchi.setEstado(new Invernando());
+        }
+    }
+}
+
+class Muerto extends Estado {
+    alimentar(tamagotchi){
+        console.log("Vuela alto campeon...");
+    }
+    jugar(tamagotchi){
+        console.log("En paz descanse");
+    }
+    dormir(tamagotchi){
+        console.log("Esta durmiendo... para siempre...");
+    }
+    comoestas(tamagotchi){
+        console.log("En paz descanse");
+    }
+    consejo(tamagotchi){
+        console.log("Disfruta la vida, antes de que te mueras x-x");
+    }
+    despertar(tamagotchi){
+        console.log("...");
+    }
+    invernar(tamagotchi){
+        console.log("No podra invernar, ya esta duermiendo... para siempre :c");
+    }
+}
+
+class Invernando extends Estado {
+    alimentar(tamagotchi){
+        console.log("(No puede comer mientras inverna)");
+    }
+    jugar(tamagotchi){
+        console.log("(No puede jugar mientras inverna)");
+    }
+    dormir(tamagotchi){
+        console.log("(Esta invernando...)");
+    }
+    comoestas(tamagotchi){
+        console.log("(Shh esta invernando)");
+    }
+    consejo(tamagotchi){
+        console.log("z z z...");
+    }
+    despertar(tamagotchi){
+        if(tamagotchi.energia==0){
+            tamagotchi.energia+=3;
+            console.log("Despierto y listo para jugar :D!");
+            tamagotchi.setEstado(new Feliz());
+        }
+    }
+    invernar(tamagotchi){
+        console.log("Shh que ya esta invernando...");
+    }
+}
+
+
+
+const intervaloHambre = setInterval(() => {
+  if (Tamagotchi.hambre > 0) {
+    Tamagotchi.hambre -= 1;
+    console.log("😬 Hambre disminuyó a:", Tamagotchi.hambre);
+  } else {
+    // Si hambre llega a 0, pierde vida
+    if (Tamagotchi.vida > 0) {
+      Tamagotchi.vida -= 1;
+      console.log("💔 Hambre en 0. Vida disminuyó a:", Tamagotchi.vida);
+    }
+    // Si vida también llega a 0, Tamagotchi muere
+    if (Tamagotchi.vida === 0) {
+      console.log("☠️ El Tamagotchi ha muerto.");
+      clearInterval(intervaloHambre);
+    }
+  }
+}, 5000);
+    </script>
+  </body>
+</html>
