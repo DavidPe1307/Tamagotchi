@@ -1,0 +1,134 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Tamagotchi</title>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Pantalla de Selección -->
+    <div class="screen active" id="pantallaSeleccion">
+        <div class="containeringreso">
+            <h3 class="minecraft-font">Ingrese el nombre de su Tamagotchi</h3>
+        </div>
+        <input type="text" class="NombreTamagotchi" id="NombreTamagotchi" placeholder="Nombre aquí...">
+        <div class="container">
+            <h1 class="minecraft-font">Escoja su tamagotchi</h1>
+        </div>
+        <div class="containercuerpo" id="escojercuerpo">
+            <ul class="root">
+                <li data-tipo="papel" onclick="seleccionarCuerpo(this)">
+                  <img src="./img/cuerpos/Cuerpopapel.gif">
+                  <p class="minecraft-font-small" style="margin-top: 10px;">Papel</p>
+                </li>
+            </ul>
+            <ul class="root">
+                <li data-tipo="plastilina" onclick="seleccionarCuerpo(this)">
+                    <img src="./img/cuerpos/Cuerpoplastilina.gif">
+                    <p class="minecraft-font-small" style="margin-top: 10px;">Plastilina</p>
+                </li>
+            </ul>
+            <ul class="root">
+                <li data-tipo="tocino" onclick="seleccionarCuerpo(this)">
+                  <img src="./img/cuerpos/Cuerpotocino.gif">
+                    <p class="minecraft-font-small" style="margin-top: 10px;">Tocino</p>
+                </li>
+            </ul>
+        </div>
+        <button class="boton" onclick="guardarinfor()">
+            <h3 class="minecraft-font">Continuar</h3>
+        </button>
+    </div>
+
+    <!-- Pantalla de Juego -->
+    <div class="screen" id="pantallaJuego">
+        <div class="containerInfor">
+            <ul class="root">
+                <li>
+                    <div class="barra-vida">
+                        <div class="barra-fill" id="barraVida" ></div>
+                    </div>
+                </li>
+            </ul>
+            <ul class="root">
+                <li>
+                    <div class="barra-energia">
+                        <div class="barra-fill" id="barraEnergia"></div>
+                    </div>
+                </li>
+            </ul>
+            <ul class="root">
+                <li>
+                    <div class="barra-hambre">
+                        <div class="barra-fill" id="barraHambre" ></div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="containerNombre" >
+            <h2 id="nombreTamagotchi" class="minecraft-font">Mi Tamagotchi</h2>
+        </div>
+        <div class="message-container" id="messageArea"></div>
+        <div class="container-juego">
+            <div id="particulasTamagotchi" class="tamagotchi-particulas"></div>
+            <div id="reaccionTamagotchi" class="tamagotchi-reaccion"></div>
+            <div id="imagenTamagotchi" class="tamagotchi-imagen">tamagotchi-imagen</div>
+        </div>
+        <div class="containerinteracciones">
+            <div class="fila-botones">
+            <ul class="root">
+                <li onclick="alimentar()">
+                    <p class="minecraft-font-small" style="margin-top: 5px;"> <img class="imagenboton" src="./img/botones/Botoncomer.png">Comer</p>
+                </li>
+            </ul>
+            <ul class="root">
+                <li onclick="bañar()">
+                    <p class="minecraft-font-small" style="margin-top: 5px;"> <img class="imagenboton"src="./img/botones/Botonbañar.png">Bañar</p>
+                </li>
+            </ul>
+            <ul class="root">
+                <li onclick="jugar()">
+                    
+                    <p class="minecraft-font-small" style="margin-top: 2px;"> <img class="imagenboton" src="./img/botones/Botonjugar.png"> Jugar</p>
+                </li>
+            </ul>
+            <ul class="root">
+                <li onclick="dormir()">
+                    <p class="minecraft-font-small" style="margin-top: 5px;"> <img class="imagenboton" src="./img/botones/Botondormir.png">Dormir</p>
+                </li>
+            </ul>
+            </div>
+        </div>
+        <div class="containerinteraccionescuestionables">
+            <div class="fila-botones">
+            <ul class="root">
+                <li onclick="preguntarEstado()">
+                    <label class="minecraft-font-text">¿Cómo estás?</label>
+                </li>
+            </ul>
+            <ul class="root">
+                <li onclick="invernar()">
+                  <label class="minecraft-font-text">Invernar</label>
+                </li>
+            </ul>
+            <ul class="root">
+                <li onclick="darConsejo()">
+                    <label class="minecraft-font-text">Consejo</label>
+                </li>
+            </ul>
+            <ul class="root">
+                <li onclick="despertar()">
+                  <label class="minecraft-font-text">Despertar</label>
+                </li>
+            </ul>
+        </div>
+        </div>
+        <button class="boton" onclick="volverSeleccion()" style="width: 15%; background-color: #95a5a6;">
+            <h3 class="minecraft-font-small">Volver</h3>
+        </button>
+    </div>
+        <script src="tamagotchi.js">
+    </script>
+</body>
+</html>

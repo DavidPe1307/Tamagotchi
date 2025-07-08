@@ -1,0 +1,436 @@
+body {
+    background-image: url("./img/fondo/fondopixel.gif");
+    background-repeat: repeat; /* Se repite en X e Y */
+    background-size: 100px 100px; /* Tamaño de cada "tile" del gif */
+    color: #000000;
+    text-align: center;
+    padding-top: 0px;
+    margin: 0px auto;
+    gap: 10px;
+}
+
+.minecraft-font {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 24px;
+}
+
+.minecraft-font-text {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 18px;
+}
+
+.minecraft-font-small {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 14px;
+}
+
+/* Pantalla de selección */
+.screen {
+    display: none;
+}
+        
+.screen.active {
+    display: block;
+}
+
+/* Estilos para pantalla de selección */
+.containeringreso {
+    background-color: rgba(0, 0, 0, 0.5);
+    height: 120px;
+    width: 40%;
+    margin: 20px auto;
+    padding: 20px;
+    border-radius: 10px;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.containeringreso:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+    transform: scale(1.02);
+}
+
+.NombreTamagotchi {
+    background-color: rgba(0, 0, 0, 0.5);
+    height: 40px;
+    width: 30%;
+    margin: 10px auto;
+    padding: 20px;
+    border-radius: 10px;
+    color: white;
+    border: none;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 16px;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.NombreTamagotchi:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+    transform: scale(1.02);
+}
+
+.NombreTamagotchi:focus {
+    outline: 2px solid #4ecdc4;
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+.container {
+    background-color: rgba(0, 0, 0, 0.5);
+    height: 100px;
+    width: 30%;
+    margin: 20px auto;
+    padding: 20px;
+    border-radius: 10px;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.container:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+    transform: scale(1.02);
+}
+
+.containercuerpo {
+    background-color: rgba(0, 0, 0, 0.5);
+    height: auto;
+    width: 60%;
+    border-radius: 10px;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 10px auto;
+    padding: 10px;
+    gap: 10px;
+}
+
+.containercuerpo ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.containercuerpo li {
+    background-color: rgba(0, 0, 0, 0.5);
+    height: 120px;
+    width: 150px;
+    margin: 5px;
+    padding: 10px;
+    border-radius: 10px;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 3px solid transparent;
+}
+
+.containercuerpo li:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+    transform: scale(1.05);
+}
+
+.containercuerpo li.selected {
+    border-color: #4ecdc4;
+    background-color: rgba(78, 205, 196, 0.3);
+}
+
+.containercuerpo img {
+    width: 80px;
+    height: 80px;
+    image-rendering: pixelated;
+}
+
+.boton {
+    background-color: rgb(51, 123, 255);
+    height: 60px;
+    width: 20%;
+    margin: 10px auto;
+    padding: 20px;
+    border-radius: 10px;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border: none;
+    transition: all 0.3s ease;
+}
+
+.boton:hover {
+    background-color: rgba(51, 68, 255, 0.888);
+    transform: scale(1.02);
+}
+
+/* Estilos para pantalla de juego */
+.containerInfor {
+    background-color: rgba(0, 0, 0, 0.5);
+    height: 60px;
+    width: 35%;
+    margin: 0px auto;
+    padding: 20px;
+    border-radius: 10px;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+.containerInfor ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    align-items: center;
+}
+
+.containerInfor li {
+    background-color: rgba(0, 0, 0, 0);
+    height: 40px;
+    width: 120px;
+    margin: 5px;
+    padding: 10px;
+    border-radius: 10px;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.containerNombre {
+    background-color: rgba(112, 112, 112, 0.5);
+    height: 40px;
+    width: 25%;
+    margin: 20px auto;
+    padding: 20px;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+}
+
+.container-juego {
+    background-color: rgb(73, 73, 73);
+    height: 300px;
+    width: 40%;
+    margin: 10px auto;
+    padding: 20px;
+    border-radius: 10px;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative; /* Necesario para que funcione z-index en los hijos */
+    z-index: 4;
+}
+.message-container {
+    background-color: rgba(0, 0, 0, 0.7);
+    width: 50%;
+    min-height: 80px;
+    margin: 10px auto;
+    padding: 15px;
+    border-radius: 10px;
+    color: white;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 14px;
+}
+
+.container-juego .tamagotchi-particulas {
+    position: absolute; /* Posicionamiento absoluto para superponer */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 4; /* Capa más alta - se muestra DELANTE de todo */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none; /* Permite interacción con elementos debajo */
+    transform: scale(1.5) translateX(-20px); /* Hace el cuerpo 30% más grande y lo mueve a la izquierda */
+}
+
+.container-juego .tamagotchi-reaccion {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 3; /* Capa más alta - se muestra ENCIMA del cuerpo */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+    transform: scale(1.1) translateX(-20px); /* Hace las reacciones 30% más grandes y las mueve a la izquierda */
+}
+
+.container-juego .tamagotchi-imagen {
+    position: relative; /* O absolute si quieres posicionamiento específico */
+    z-index: 2; /* Capa media - el cuerpo queda debajo de la reacción */
+    transform: scale(1.3) translateX(-20px); /* Hace el cuerpo 30% más grande y lo mueve a la izquierda */
+} 
+.containerinteracciones {
+    position: absolute;
+    left: 10%;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    width: auto;
+    padding: 15px;
+    border-radius: 10px;
+    z-index: 10;
+}
+
+.fila-botones {
+    display: flex;
+    flex-direction: column;
+    gap: 10px; /* Espacio entre filas */
+}
+
+.containerinteracciones ul {
+    display: flex;
+    gap: 15px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.containerinteracciones li {
+    background-color: rgba(0, 0, 0, 0);
+    width: 80px;
+    margin: 5px;
+    padding: 15px;
+    border-radius: 10px;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.conainerinteracciones li .imagenboton{
+    height: 60px;
+    width: 60px;
+}
+
+.containerinteracciones li:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+    transform: scale(1.1);
+}
+
+.containerinteraccionescuestionables {
+    position: absolute;
+    left: auto;
+    right: 15px;
+    top: 50%;
+    transform: scale(70%) translateY(-70%);
+    background-color: rgba(0, 0, 0, 0.5);
+    width: 300px;
+    padding: 1px;
+    border-radius: 10px;
+    z-index: 10;
+}
+
+.columna-botones {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.containerinteraccionescuestionables ul {
+    display: flex;
+    gap: 10px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.containerinteraccionescuestionables li {
+    background-color: rgba(255, 149, 0, 0.7);
+    width: 150px;
+    margin: 80px;
+    padding: 12px 11px;
+    border-radius: 10px;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: center;
+}
+
+.containerinteraccionescuestionables li:hover {
+    background-color: rgba(255, 149, 0, 0.9);
+    transform: scale(1.05);
+}
+
+.imagenboton {
+    display: block;
+    margin: 0 auto 5px;
+    width: 40px;
+    height: 40px;
+    image-rendering: pixelated;
+}
+
+.tamagotchi-imagen {
+    width: 200px;
+    height: 200px;
+    image-rendering: pixelated;
+}
+.barras-container {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Barra de vida */
+.barra-vida {
+    transform: scale(2); 
+}
+
+.barra-vida img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+}
+
+/* Barra de energía (más pequeña) */
+.barra-energia {
+    transform: scale(1.5) translateX(-5px);
+}
+
+.barra-energia img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+}
+
+/* Barra de hambre */
+.barra-hambre {
+    transform: scale(2); 
+}
+
+.barra-hambre img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+}
